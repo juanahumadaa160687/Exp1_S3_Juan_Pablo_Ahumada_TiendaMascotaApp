@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class ProductoController {
 
+    // Simulamos una base de datos con una lista de productos
     private List<Producto> productos = new ArrayList<>();
 
+    // Agrega algunos productos de ejemplo
     public ProductoController() {
         productos.add(new Producto(1, 1001, "Pelota de tenis", "Pelota de tenis para perros", 9.99, 50));
         productos.add(new Producto(2, 1002, "Rascador para gatos", "Rascador para gatos con plataforma y cuerda", 29.99, 20));
@@ -28,6 +30,8 @@ public class ProductoController {
         productos.add(new Producto(9, 1009, "Collar para gatos", "Collar con campana para gatos", 14.99, 90));
         productos.add(new Producto(10, 1010, "Transportadora para mascotas", "Transportadora de plástico para perros y gatos", 59.99, 15));
     }
+
+    // Métodos para manejar las solicitudes HTTP
 
     @GetMapping("/productos")
     public List<Producto> getProductos() {
@@ -52,28 +56,12 @@ public class ProductoController {
         return nuevoProducto;
     }
 
-    @GetMapping("/productos/eliminar")
-    public String eliminarProducto(@RequestParam int id) {
+    @GetMapping("/productos/elimina/{id}")
+    public String eliminarProducto(@PathVariable int id) {
         for (Producto producto : productos) {
             if (producto.getId() == id) {
                 productos.remove(producto);
                 return "Producto eliminado";
-            }
-        }
-        return "Producto no encontrado";
-    }
-
-    @GetMapping("/productos/editar")
-    public String editarProducto(@RequestParam int id, @RequestParam int codigo, @RequestParam String nombre,
-                                 @RequestParam String descripcion, @RequestParam double precio, @RequestParam int stock) {
-        for (Producto producto : productos) {
-            if (producto.getId() == id) {
-                producto.setCodigo(codigo);
-                producto.setNombre(nombre);
-                producto.setDescripcion(descripcion);
-                producto.setPrecio(precio);
-                producto.setStock(stock);
-                return "Producto actualizado";
             }
         }
         return "Producto no encontrado";

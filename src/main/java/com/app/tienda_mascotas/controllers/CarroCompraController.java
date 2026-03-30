@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class CarroCompraController {
 
+    // Simulamos una base de datos con una lista de carros de compra
     private List<CarroCompra> carritoCompra = new ArrayList<>();
 
+    // Agrega algunos carros de compra de ejemplo
     public CarroCompraController() {
         ClienteController clienteController = new ClienteController();
         ProductoController productoController = new ProductoController();

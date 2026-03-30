@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+//Getters, Setters y Constructor con todos los argumentos vía Lombok
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class Pago {
     String estado;
     String fechaPago;
     Cliente cliente;
-    
+
     List<Producto> productos;
 
 }
